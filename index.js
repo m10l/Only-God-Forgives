@@ -1,3 +1,4 @@
+require('newrelic');
 var twilio     = require('twilio');
 var twiml      = new twilio.TwimlResponse();
 var express    = require('express');

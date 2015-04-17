@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.set('port', process.env.PORT || 3000);
 
 var recordings = [];
 
@@ -42,6 +43,6 @@ app.get('/', function (req, res) {
     });
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(app.get('port'), function () {
     console.log('hiya');
 });

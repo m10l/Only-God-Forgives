@@ -32,7 +32,7 @@ var twiml = new twilio.TwimlResponse();
 app.get('/receivecall', function (req, res) {
     twiml.say('BUTTS!');
     res.set('Content-Type', 'text/xml');
-    res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Say>For all have sinned, and come short of the glory of God! Leave your confession after the beep</Say><Record action="/record" method="POST" maxLength="10" finishOnKey="*"/><Say>I did not receive your confession</Say></Response>');
+    res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Say>For all have sinned, and come short of the glory of God! Leave your confession after the beep</Say><Record action="/record" method="POST" maxLength="120" finishOnKey="*"/><Say>I did not receive your confession</Say></Response>');
 });
 
 app.post('/record', function (req, res) {

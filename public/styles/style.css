@@ -42,6 +42,8 @@
  * ===========
  */
 .confession {
+  float: left;
+  width: 100%;
   margin-bottom: 100px; }
   .confession__list {
     margin: 100px auto 0;

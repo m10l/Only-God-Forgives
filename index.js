@@ -31,7 +31,8 @@ mongoose.connect( mongoUri );
 var Confession = mongoose.model('Confession', {
     recording_url : String,
     from          : String,
-    votes         : Number
+    votes         : Number,
+    updated       : { type: Date, default: Date.now }
 });
 
 app.get('/receivecall', function (req, res) {
@@ -60,13 +61,17 @@ app.get('/', function (req, res) {
 
     var confessionsArray = [];
     Confession.find( function(err, confessions) {
-        if (err) return console.log(err);
+
+        if (err) {
+            console.log(err);
+        }
+
         confessions.forEach( function(confession, index) {
             confessionsArray.unshift({
                 recording_url : confession.recording_url,
                 from          : confession.from,
                 votes         : confession.votes,
-                id            : index
+                id            : confession._id
             });
         });
 
@@ -74,9 +79,27 @@ app.get('/', function (req, res) {
             recordings: confessionsArray
         });
 
-        console.log(confessionsArray);
+    });
+
+});
+
+app.post('/confessions/:id/vote', function (req, res) {
+
+    Confession.findById( req.params.id, function (err, confession) {
+
+        if ( req.body.vote_type === 'up' ) {
+            confession.votes = confession.votes + 1
+        } else if ( req.body.vote_type === 'down' ) {
+            confession.votes = confession.votes - 1
+        }
+
+        confession.save( function (err) {
+            console.log('Updated vote count on confession');
+        });
 
     });
+
+    res.send('Marked vote');
 
 });
 

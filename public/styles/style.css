@@ -20,7 +20,7 @@
  */
 .global-header {
   background: #222;
-  padding: 50px 0;
+  padding: 50px;
   text-align: center;
   color: #fff; }
   .global-header h1 {
@@ -36,6 +36,11 @@
     font-style: italic;
     color: #ccc;
     text-rendering: optimizeLegibility; }
+  .global-header a,
+  .global-header a:hover,
+  .global-header a:focus {
+    color: #fff;
+    text-decoration: none; }
 
 /**
  * Confessions
@@ -48,6 +53,9 @@
   .confession__list {
     margin: 100px auto 0;
     max-width: 66.666%; }
+    @media screen and (max-width: 667px) {
+      .confession__list {
+        max-width: 90%; } }
   .confession audio {
     width: 100%;
     padding-left: 20px; }

@@ -12,6 +12,11 @@
     &__list {
         margin: 100px auto 0;
         max-width: 66.666%;
+
+        @media screen and (max-width: 667px) {
+            max-width: 90%;
+        }
+
     }
 
     audio {

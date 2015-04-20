@@ -1,21 +1,28 @@
-require('newrelic');
+/**
+ * Dependencies
+ * ============
+ */
+
 var twilio     = require('twilio');
 var express    = require('express');
 var mongoose   = require('mongoose');
-var xml        = require('xml');
 var bodyParser = require('body-parser');
 
-var app        = express();
+/**
+ * Express config
+ * ==============
+ */
+
+var app = express();
 app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.set('port', process.env.PORT || 3000);
+app.use( bodyParser.urlencoded({ extended: true }) );
+app.set( 'view engine', 'ejs' );
+app.use( express.static('public') );
+app.set( 'port', process.env.PORT || 3000 );
 
 /**
- * MongoDB Stuffs
+ * MongoDB Config
+ * ==============
  */
 
 var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/confessions';
@@ -27,22 +34,16 @@ var Confession = mongoose.model('Confession', {
     votes         : Number
 });
 
-var twiml = new twilio.TwimlResponse();
-
 app.get('/receivecall', function (req, res) {
-    twiml.say('BUTTS!');
     res.set('Content-Type', 'text/xml');
     res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Say>For all have sinned, and come short of the glory of God! Leave your confession after the beep</Say><Record action="/record" method="POST" maxLength="120" finishOnKey="*"/><Say>I did not receive your confession</Say></Response>');
 });
 
 app.post('/record', function (req, res) {
-    console.log( req.body );
-    console.log( req.body.RecordingUrl );
-    console.log( req.body.Caller );
 
     var confession = new Confession ({
         recording_url : req.body.RecordingUrl,
-        from          : req.body.from,
+        from          : req.body.Caller,
         votes         : 0
     });
     confession.save( function (err) {
@@ -52,6 +53,7 @@ app.post('/record', function (req, res) {
     // Send hangup response
     res.set('Content-Type', 'text/xml');
     res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>');
+
 });
 
 app.get('/', function (req, res) {
@@ -59,19 +61,22 @@ app.get('/', function (req, res) {
     var confessionsArray = [];
     Confession.find( function(err, confessions) {
         if (err) return console.log(err);
-        console.log(confessions);
-
+        var index = 0;
         confessions.forEach( function(confession) {
+            index = index++;
             confessionsArray.unshift({
                 recording_url : confession.recording_url,
                 from          : confession.from,
-                votes         : confession.votes
+                votes         : confession.votes,
+                id            : index
             });
         });
 
         res.render('index', {
             recordings: confessionsArray
         });
+
+        console.log(confessionsArray);
 
     });
 

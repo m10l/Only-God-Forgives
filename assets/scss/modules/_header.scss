@@ -1,0 +1,30 @@
+/**
+ * Header
+ * ======
+ */
+
+.global-header {
+
+    background: #222;
+    padding: 50px 0;
+    text-align: center;
+    color: #fff;
+
+    h1 {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 100;
+        text-rendering: optimizeLegibility;
+    }
+
+    p {
+        margin: 20px 0 0;
+        font-weight: 300;
+        font-size: 14px;
+        font-style: italic;
+        color: #ccc;
+        text-rendering: optimizeLegibility;
+    }
+
+}

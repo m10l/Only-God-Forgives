@@ -1,32 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>Confessions</title>
-        <link href='http://fonts.googleapis.com/css?family=Merriweather:300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="styles/normalize.css">
-        <link rel="stylesheet" href="styles/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="scripts/script.js"></script>
+        <% include partials/head %>
     </head>
     <body>
         <div class="global-wrapper">
-            <header>
-                <h1>✝<br>Confessions</h1>
-                <p>"For all have sinned, and come short of the glory of God."<br>–Romans 3:23 <br></p>
-                <p>call 01474 771 666 to confess your sins.</p>
+            <header class="global-header">
+                <h1>Only God Forgives</h1>
+                <p>Make your confession to 01474 771 666 and be free of sin.</p>
             </header>
-            <ul>
+            <ul class="naked-list confession__list">
             <% recordings.forEach( function(recording) { %>
                 <li>
-                    <audio
-                        src="<%= recording.recording_url %>.mp3"
-                        controls="controls"
-                    ></audio>
-                    <div class="votes">
-                        <p><span class="js-vote-count">0</span> have forgiven</p>
-                        <button class="js-forgive">Forgive</button>
-                    </div>
+                    <% include partials/confession %>
                 </li>
             <% }); %>
             </ul>

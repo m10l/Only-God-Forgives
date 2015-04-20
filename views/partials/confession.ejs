@@ -1,0 +1,12 @@
+<article class="confession" data-votes="<%= recording.votes %>">
+    <div class="confession-controls">
+        <button class="confession-controls__button confession-controls__button--forgive js-upvote">Forgive</button>
+        <div class="confession-controls__count js-vote-count"><%= recording.votes %></div>
+        <button class="confession-controls__button confession-controls__button--condemn js-downvote">Condemn</button>
+    </div>
+    <h2>Confession #00<%= recording.id %></h2>
+    <audio
+        src="<%= recording.recording_url %>.mp3"
+        controls="controls"
+    ></audio>
+</article>

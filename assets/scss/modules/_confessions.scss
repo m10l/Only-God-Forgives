@@ -1,0 +1,55 @@
+/**
+ * Confessions
+ * ===========
+ */
+
+.confession {
+
+    margin-bottom: 100px;
+
+    &__list {
+        margin: 100px auto 0;
+        max-width: 66.666%;
+    }
+
+    h2 {
+        float: left;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-rendering: optimizeLegibility;
+        margin-left: 20px;
+        width: calc(100% - 120px);
+    }
+
+    audio {
+        width: calc(100% - 120px);
+        margin-left: 20px;
+    }
+
+}
+
+.confession-controls {
+
+    float: left;
+    width: 100px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    padding-right: 20px;
+
+    &__count {
+        padding: 10px 0;
+        font-weight: 500;
+    }
+
+    &__button {
+        border: none;
+        background: #eee;
+        width: 100%;
+        padding: 10px 5px;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+}

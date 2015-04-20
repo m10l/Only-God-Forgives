@@ -1,0 +1,12 @@
+// Global
+@import "global/resets";
+@import "global/helpers";
+
+// Modules
+@import "modules/header";
+@import "modules/confessions";
+
+body {
+    font-family: 'Lato';
+    font-weight: 100;
+}

@@ -61,9 +61,7 @@ app.get('/', function (req, res) {
     var confessionsArray = [];
     Confession.find( function(err, confessions) {
         if (err) return console.log(err);
-        var index = 0;
-        confessions.forEach( function(confession) {
-            index = index++;
+        confessions.forEach( function(confession, index) {
             confessionsArray.unshift({
                 recording_url : confession.recording_url,
                 from          : confession.from,

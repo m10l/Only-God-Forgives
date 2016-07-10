@@ -96,7 +96,8 @@ app.get('/', function (req, res) {
                 recording_url : confession.recording_url,
                 from          : confession.from,
                 votes         : confession.votes,
-                id            : confession._id
+                id            : confession._id,
+                updated       : confession.updated
             });
         });
 

@@ -57,6 +57,30 @@ app.post('/record', function (req, res) {
 
 });
 
+app.get('/api/all', function( req, res ) {
+
+    var confessionsArray = [];
+    Confession.find( function(err, confessions) {
+
+        if (err) {
+            console.log(err);
+        }
+
+        confessions.forEach( function(confession, index) {
+            confessionsArray.unshift({
+                recording_url : confession.recording_url,
+                from          : confession.from,
+                votes         : confession.votes,
+                id            : confession._id
+            });
+        });
+
+        res.json(confessionsArray);
+
+    });
+
+})
+
 app.get('/', function (req, res) {
 
     var confessionsArray = [];

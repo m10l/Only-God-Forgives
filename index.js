@@ -58,6 +58,8 @@ app.post('/record', function (req, res) {
 });
 
 app.get('/api/all', function( req, res ) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
 
     var confessionsArray = [];
     Confession.find( function(err, confessions) {
@@ -69,7 +71,6 @@ app.get('/api/all', function( req, res ) {
         confessions.forEach( function(confession, index) {
             confessionsArray.unshift({
                 recording_url : confession.recording_url,
-                from          : confession.from,
                 votes         : confession.votes,
                 id            : confession._id
             });

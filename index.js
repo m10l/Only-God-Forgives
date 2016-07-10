@@ -72,7 +72,8 @@ app.get('/api/all', function( req, res ) {
             confessionsArray.unshift({
                 recording_url : confession.recording_url,
                 votes         : confession.votes,
-                id            : confession._id
+                id            : confession._id,
+                updated       : confession.updated
             });
         });
 
@@ -96,8 +97,7 @@ app.get('/', function (req, res) {
                 recording_url : confession.recording_url,
                 from          : confession.from,
                 votes         : confession.votes,
-                id            : confession._id,
-                updated       : confession.updated
+                id            : confession._id
             });
         });
 

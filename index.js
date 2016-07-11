@@ -37,7 +37,7 @@ var Confession = mongoose.model('Confession', {
 
 app.get('/receivecall', function (req, res) {
     res.set('Content-Type', 'text/xml');
-    res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Say>For all have sinned, and come short of the glory of God! Leave your confession after the beep</Say><Record action="/record" method="POST" maxLength="120" finishOnKey="*"/><Say>I did not receive your confession</Say></Response>');
+    res.send('<?xml version="1.0" encoding="UTF-8"?><Response><Say>Got something to get off your chest? Leave your confession after the beep</Say><Record action="/record" method="POST" maxLength="120" finishOnKey="*"/><Say>I did not receive your confession</Say></Response>');
 });
 
 app.post('/record', function (req, res) {
